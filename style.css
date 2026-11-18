@@ -257,6 +257,72 @@ section {
 .timeline li:hover { padding-left: 16px; color: var(--accent-text); }
 .timeline .mono { color: var(--muted); min-width: 60px; }
 
+/* About: photo, quick links, career interests */
+.portrait {
+  margin: 0; position: relative; aspect-ratio: 4 / 5; max-width: 420px; width: 100%;
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--bg-2), color-mix(in srgb, var(--accent) 25%, var(--bg-2)));
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+.portrait:hover img { transform: scale(1.04); }
+.portrait-fallback { display: none; position: absolute; inset: 0; place-items: center; font: 700 88px var(--mono); color: var(--accent-text); }
+.portrait.missing img { display: none; }
+.portrait.missing .portrait-fallback { display: grid; }
+.about-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.interests { grid-column: 1 / -1; }
+.interests h3 { color: var(--muted); margin: 0 0 12px; font-weight: 400; }
+.interest-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.interest-list li {
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); font-size: 16px;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.interest-list li:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* =========================================================
+   WHAT I LEARNED FROM OTHERS — blog post cards
+   ========================================================= */
+.posts { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); }
+.post {
+  position: relative; overflow: hidden; cursor: pointer;
+  display: flex; flex-direction: column; gap: 12px; padding: 28px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2);
+  transition: transform .4s var(--ease), border-color .3s, opacity .8s var(--ease);
+}
+.post::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
+}
+.post:hover::before { opacity: 1; }
+.post.visible:hover { transform: translateY(-4px); }
+.post:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.post > * { position: relative; }
+.post-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; color: var(--muted); }
+.post-kind {
+  font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em;
+  padding: 3px 8px; border-radius: 6px; background: var(--accent); color: var(--accent-ink);
+}
+.post h3 { margin: 0; font-size: 26px; line-height: 1.15; letter-spacing: -.02em; }
+.post .speaker { margin: 0; font-size: 15px; }
+.post .excerpt { margin: 0; color: var(--muted); font-size: 16px; }
+.post .read { margin-top: auto; padding-top: 8px; color: var(--accent-text); }
+.post .read span { display: inline-block; transition: transform .3s var(--ease); }
+.post:hover .read span { transform: translateX(6px); }
+
+/* Full post in the drawer */
+.post-full .post-meta { margin-bottom: 14px; }
+.post-full h2 { font-size: 38px; line-height: 1.1; }
+.post-full .speaker { color: var(--muted); margin: 0 0 28px; }
+.post-full h4 { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 32px 0 12px; }
+.takeaways { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.takeaways li { padding-left: 26px; position: relative; }
+.takeaways li::before { content: "→"; position: absolute; left: 0; color: var(--accent-text); font-family: var(--mono); }
+.post-full .next {
+  margin-top: 32px; padding: 18px 20px; border-radius: 12px;
+  border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.post-full .next p { margin: 0; }
+
 /* =========================================================
    LAB
    ========================================================= */
