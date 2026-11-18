@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
   <!-- Interactive background: a particle field that reacts to the cursor -->
@@ -26,6 +26,7 @@
       <a href="#work" data-magnetic>Work</a>
       <a href="#games" data-magnetic>Games</a>
       <a href="#about" data-magnetic>About</a>
+      <a href="#learned" data-magnetic>Talks</a>
       <a href="#lab" data-magnetic>Lab</a>
       <a href="#contact" data-magnetic>Contact</a>
     </nav>
@@ -44,8 +45,9 @@
     <li data-target="work">01</li>
     <li data-target="games">02</li>
     <li data-target="about">03</li>
-    <li data-target="lab">04</li>
-    <li data-target="contact">05</li>
+    <li data-target="learned">04</li>
+    <li data-target="lab">05</li>
+    <li data-target="contact">06</li>
   </ol>
 
   <main>
@@ -60,6 +62,7 @@
       <p class="hero-sub">Jamie Ruane — student developer at the University of Limerick. I build browser games, learning platforms and tools that make developers' days easier.</p>
       <div class="hero-cta">
         <a href="#work" class="btn" data-magnetic data-cursor="view">See the work</a>
+        <a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" class="btn ghost" target="_blank" rel="noopener" data-magnetic data-cursor="connect">LinkedIn ↗</a>
         <button class="btn ghost" id="open-terminal" data-magnetic data-cursor="type">Open terminal ›_</button>
       </div>
       <p class="hint mono">move your mouse · click to ripple · try the Konami code</p>
@@ -99,12 +102,21 @@
         <h2>About</h2>
       </header>
       <div class="about-grid">
+        <!-- Professional photo: save it as photo.jpg next to index.html. Initials show until it exists. -->
+        <figure class="portrait reveal">
+          <img src="photo.jpg" alt="Jamie Ruane" onerror="this.closest('figure').classList.add('missing')" />
+          <span class="portrait-fallback" aria-hidden="true">JR</span>
+        </figure>
         <div class="about-text reveal">
           <p class="big">I'm Jamie, a student at the University of Limerick who likes building things people actually use, from neon arcade racers to courses that teach nine programming languages.</p>
           <p>I care about the details that make software feel good: procedurally generated audio in a racing game, exercises that are checked against a real compiler, a CLI with zero dependencies. Most of what I build starts as something I wanted to exist, and I keep going until it's polished enough to share.</p>
+          <div class="about-links">
+            <a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" class="btn small" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a>
+            <a href="mailto:26445751@studentmail.ul.ie" class="btn small ghost" data-magnetic>Email me</a>
+          </div>
         </div>
         <div class="stack reveal">
-          <h3 class="mono">stack.json</h3>
+          <h3 class="mono">skills.json</h3>
           <pre class="code"><code>{
   <span class="k">"languages"</span>: [<span class="s">"TypeScript"</span>, <span class="s">"JavaScript"</span>, <span class="s">"Python"</span>,
                 <span class="s">"C"</span>, <span class="s">"C++"</span>, <span class="s">"C#"</span>],
@@ -113,6 +125,15 @@
   <span class="k">"testing"</span>:   [<span class="s">"Vitest"</span>, <span class="s">"node:test"</span>],
   <span class="k">"studying"</span>:  <span class="s">"University of Limerick"</span>
 }</code></pre>
+        </div>
+        <div class="interests reveal">
+          <h3 class="mono">career interests</h3>
+          <ul class="interest-list">
+            <li>Full-stack web development</li>
+            <li>Ed-tech &amp; learning platforms</li>
+            <li>Developer tools</li>
+            <li>Game development</li>
+          </ul>
         </div>
         <ol class="timeline reveal">
           <li><span class="mono">now</span> Studying at the University of Limerick</li>
@@ -123,10 +144,20 @@
       </div>
     </section>
 
-    <!-- 04 — LAB (playground of small experiments) -->
-    <section id="lab" class="lab">
+    <!-- 04 — WHAT I LEARNED FROM OTHERS (blog posts rendered from POSTS in script.js) -->
+    <section id="learned" class="learned">
       <header class="section-head">
         <span class="mono num">04</span>
+        <h2>What I learned from others</h2>
+        <p class="section-note">Reflections on guest talks and industry events.</p>
+      </header>
+      <div class="posts" id="posts"></div>
+    </section>
+
+    <!-- 05 — LAB (playground of small experiments) -->
+    <section id="lab" class="lab">
+      <header class="section-head">
+        <span class="mono num">05</span>
         <h2>The lab</h2>
         <p class="section-note">Small experiments. Poke them.</p>
       </header>
@@ -148,14 +179,15 @@
       </div>
     </section>
 
-    <!-- 05 — CONTACT -->
+    <!-- 06 — CONTACT -->
     <section id="contact" class="contact">
       <header class="section-head">
-        <span class="mono num">05</span>
+        <span class="mono num">06</span>
         <h2>Let's make something.</h2>
       </header>
       <a href="mailto:26445751@studentmail.ul.ie" class="mega-link" data-magnetic data-cursor="say hi">26445751@<wbr>studentmail.ul.ie</a>
       <ul class="socials">
+        <li><a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a></li>
         <li><a href="https://github.com/JamieRuane" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a></li>
         <li><a href="https://www.npmjs.com/package/standup-scribe" target="_blank" rel="noopener" data-magnetic>npm ↗</a></li>
         <!-- Add more when ready, e.g. <li><a href="https://linkedin.com/in/…" data-magnetic>LinkedIn ↗</a></li> -->
@@ -193,6 +225,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

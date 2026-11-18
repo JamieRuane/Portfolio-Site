@@ -36,6 +36,60 @@ const PROJECTS = [
 
 const ROTATING_WORDS = ["games", "learning tools", "dev tools", "web apps"];
 const EMAIL = "26445751@studentmail.ul.ie";
+const LINKEDIN = "https://www.linkedin.com/in/jamie-ruane-98090329a/";
+
+// "What I learned from others" blog posts. Newest first. Add a new object to add a post.
+// kind: "Lecturer" | "Students" | "Guest speaker" | "Industry event" (any short label works)
+const POSTS = [
+  { id: "eoin-obrien", date: "2026-11-18", kind: "Lecturer",
+    title: "Careers rarely go in a straight line",
+    speaker: "Eoin O'Brien, lecturer and former student",
+    excerpt: "Hearing from someone who once sat where I'm sitting made the road ahead feel a lot more open, and a lot less fixed.",
+    takeaways: [
+      "There are more future possibilities than the obvious job titles suggest.",
+      "Hidden networks matter: many opportunities come through people, not job ads.",
+      "Things change, so being adaptable is a skill in itself.",
+      "Resilience and dedication count, because it won't always be easy.",
+    ],
+    body: [
+      "What stood out most was that Eoin was a past student himself. It made the talk feel less like advice from above and more like a look at where this path can actually lead.",
+      "The idea of hidden networks stuck with me. I had been thinking of career progress as applying for roles one at a time, but a lot of it comes from the people you meet, the conversations you have and who remembers you.",
+      "He was honest that it isn't always easy, and that plans change. Hearing that resilience and adaptability matter as much as technical skill was reassuring, because it means setbacks are part of the process rather than a sign that you're on the wrong track.",
+    ],
+    next: "Treat events and conversations as part of my career, not extras: go to more of them, follow up with people, and stay open to paths I haven't considered yet." },
+
+  { id: "ciaran-oran", date: "2026-11-18", kind: "Students",
+    title: "There's no single best residency, only the best one for you",
+    speaker: "Ciaran and Óran, students",
+    excerpt: "Two students who have been through it explained why the right residency depends on what you want to get out of it.",
+    takeaways: [
+      "Industry knowledge matters: knowing the companies and what they do helps you choose well.",
+      "Find the residency that's best for you, not the one that looks best on paper.",
+      "Different residencies suit different aims, whether that's skills, a type of work or a future job.",
+    ],
+    body: [
+      "Hearing from students only a little ahead of me made this talk very practical. They had made the same decisions I'm about to make, so their advice was specific and recent.",
+      "The main lesson was that there isn't one ranking of residencies. A placement that's perfect for someone who wants to work at a big company might be wrong for someone who wants to try a startup, learn a particular stack or explore a different area.",
+      "That changed how I'm thinking about it. Before choosing, I need to know what I actually want to get from a residency, and I need to know the industry well enough to tell which companies can offer that.",
+    ],
+    next: "Write down what I want from a residency, research the companies properly, and talk to students who have worked there before I rank my choices." },
+
+  { id: "birgit-penzenstadler", date: "2026-11-18", kind: "Guest speaker",
+    title: "Building a career around what you care about",
+    speaker: "Birgit Penzenstadler, guest speaker",
+    excerpt: "A talk about sustainability, following your passion, and how a varied career can be a strength.",
+    takeaways: [
+      "Sustainability is something software people can and should think about.",
+      "Doing what you're passionate about makes the work more meaningful and easier to keep going with.",
+      "A varied career isn't a lack of direction: different experiences build on each other.",
+    ],
+    body: [
+      "Birgit's talk connected software with sustainability, which isn't something I had thought about much when building projects. It made me realise that the choices we make as developers have effects beyond the code itself.",
+      "She also spoke about doing what you're passionate about. Her varied career showed that you don't have to pick one narrow lane early on, and that moving between areas can give you a broader view.",
+      "That was encouraging for me, because my own projects already range from games to learning platforms to developer tools. Seeing that variety as a strength rather than a lack of focus was a useful shift in perspective.",
+    ],
+    next: "Keep following the projects I'm genuinely excited about, and start asking how what I build could be more sustainable." },
+];
 
 /* =========================================================
    HELPERS
@@ -254,6 +308,49 @@ function openProject(id) {
   $("#project-drawer").showModal();
 }
 
+/* =========================================================
+   4b. WHAT I LEARNED FROM OTHERS — blog cards + full post in the drawer
+   ========================================================= */
+const fmtDate = d => new Date(d + "T12:00:00").toLocaleDateString("en-IE", { day: "numeric", month: "short", year: "numeric" });
+const readMins = p => Math.max(1, Math.round([p.excerpt, ...p.body, ...p.takeaways, p.next].join(" ").split(/\s+/).length / 200));
+
+$("#posts").innerHTML = POSTS.map(p => `
+  <article class="post reveal" data-post="${p.id}" data-cursor="read" tabindex="0">
+    <div class="post-meta mono"><span class="post-kind">${p.kind}</span><span>${fmtDate(p.date)}</span><span>${readMins(p)} min read</span></div>
+    <h3>${p.title}</h3>
+    <p class="speaker">${p.speaker}</p>
+    <p class="excerpt">${p.excerpt}</p>
+    <span class="read mono">Read reflection <span>→</span></span>
+  </article>`).join("");
+
+$$(".post").forEach(el => {
+  el.addEventListener("pointermove", e => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+  });
+  const open = () => openPost(el.dataset.post);
+  el.addEventListener("click", open);
+  el.addEventListener("keydown", e => e.key === "Enter" && open());
+});
+
+function openPost(id) {
+  const p = POSTS.find(x => x.id === id);
+  if (!p) return;
+  $("#project-drawer .drawer-body").innerHTML = `
+    <article class="post-full">
+      <div class="post-meta mono"><span class="post-kind">${p.kind}</span><span>${fmtDate(p.date)}</span><span>${readMins(p)} min read</span></div>
+      <h2>${p.title}</h2>
+      <p class="speaker">${p.speaker}</p>
+      ${p.body.map(par => `<p>${par}</p>`).join("")}
+      <h4>Key takeaways</h4>
+      <ul class="takeaways">${p.takeaways.map(t => `<li>${t}</li>`).join("")}</ul>
+      <div class="next"><h4 style="margin-top:0">What I'll do with it</h4><p>${p.next}</p></div>
+    </article>`;
+  $("#project-drawer").showModal();
+  $("#project-drawer").scrollTop = 0;
+}
+
 /* Close any dialog via [data-close] or backdrop click */
 $$("dialog").forEach(d => {
   d.addEventListener("click", e => {
@@ -314,13 +411,15 @@ $$("[data-lab]").forEach(b => b.addEventListener("click", () => {
    8. COMMAND PALETTE (Ctrl/Cmd + K)
    ========================================================= */
 const COMMANDS = [
-  ...["home", "work", "games", "about", "lab", "contact"].map(s => ({
+  ...["home", "work", "games", "about", "learned", "lab", "contact"].map(s => ({
     label: `Go to ${s}`, hint: "nav", run: () => document.getElementById(s).scrollIntoView() })),
   ...PROJECTS.map(p => ({ label: `Open ${p.title}`, hint: "project", run: () => openProject(p.id) })),
   { label: "Toggle theme", hint: "ui", run: () => $("#theme-toggle").click() },
   { label: "Shuffle accent colour", hint: "ui", run: shuffleAccent },
   { label: "Toggle particle gravity", hint: "lab", run: () => toast(`particles: ${field.toggleMode()}`) },
   { label: "Open terminal", hint: "fun", run: openTerminal },
+  ...POSTS.map(p => ({ label: `Read: ${p.title}`, hint: "talk", run: () => openPost(p.id) })),
+  { label: "Open LinkedIn", hint: "contact", run: () => window.open(LINKEDIN, "_blank", "noopener") },
   { label: "Copy email", hint: "contact", run: () => navigator.clipboard?.writeText(EMAIL).then(() => toast("email copied")) },
 ];
 const palette = $("#palette"), pInput = $("#palette-input"), pList = $("#palette-list");
@@ -351,12 +450,14 @@ $("#open-palette").addEventListener("click", openPalette);
    ========================================================= */
 const term = $("#terminal"), tOut = $("#term-out"), tIn = $("#term-input");
 const TERM = {
-  help: () => "commands: <span class='acc'>whoami, projects, open &lt;id&gt;, skills, contact, theme, accent, clear, exit</span>",
+  help: () => "commands: <span class='acc'>whoami, projects, open &lt;id&gt;, talks, read &lt;id&gt;, skills, contact, theme, accent, clear, exit</span>",
   whoami: () => "Jamie Ruane — student developer at the University of Limerick.\nI build games, learning platforms and tools developers actually use.",
   projects: () => PROJECTS.map(p => `  <span class='acc'>${p.id.padEnd(10)}</span>${p.title} — ${p.blurb}`).join("\n"),
+  talks: () => POSTS.map(p => `  <span class='acc'>${p.id.padEnd(22)}</span>${p.title}`).join("\n"),
+  read: id => { const p = POSTS.find(x => x.id === id); if (!p) return `no post "${id}". try 'talks'`; term.close(); openPost(id); return ""; },
   open: id => { const p = PROJECTS.find(x => x.id === id); if (!p) return `no project "${id}". try 'projects'`; term.close(); openProject(id); return ""; },
   skills: () => "languages  TypeScript · JavaScript · Python · C · C++ · C#\nfrontend   React · Three.js · Canvas\nbackend    Node.js · Firebase / Firestore\ntesting    Vitest · node:test · Firebase emulators",
-  contact: () => `email:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>`,
+  contact: () => `email:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>\nlinkedin: <span class='acc'>linkedin.com/in/jamie-ruane-98090329a</span>`,
   theme: () => { $("#theme-toggle").click(); return `theme → ${root.dataset.theme}`; },
   accent: () => { shuffleAccent(); return "accent shuffled"; },
   sudo: () => "nice try.",
