@@ -226,6 +226,14 @@ section {
 }
 .card .idx { position: absolute; top: 20px; left: 24px; z-index: 1; font: 12px var(--mono); color: var(--muted); }
 
+/* Games: secondary section, so smaller cards and less height */
+.games { min-height: auto; padding-top: 80px; }
+.grid.compact { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+.grid.compact .card { min-height: 220px; padding: 20px; }
+.grid.compact .card h3 { font-size: 22px; }
+.grid.compact .card p { font-size: 14px; }
+.grid.compact .card .idx { top: 16px; left: 20px; }
+
 /* =========================================================
    ABOUT
    ========================================================= */
