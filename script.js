@@ -205,8 +205,8 @@ $("#year").textContent = new Date().getFullYear();
 /* =========================================================
    4. WORK — render cards, filter, 3D tilt, detail drawer
    ========================================================= */
-const grid = $("#project-grid");
-grid.innerHTML = PROJECTS.map((p, i) => `
+// Main work (sites and tools) goes in #project-grid; games get their own, smaller #games-grid.
+const renderCards = list => list.map((p, i) => `
   <article class="card reveal" data-type="${p.type}" data-id="${p.id}" data-cursor="open" tabindex="0">
     <div class="thumb" style="--thumb:${p.thumb}"></div>
     <span class="idx">${String(i + 1).padStart(2, "0")} / ${p.label}</span>
@@ -216,11 +216,13 @@ grid.innerHTML = PROJECTS.map((p, i) => `
       <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
     </div>
   </article>`).join("");
+$("#project-grid").innerHTML = renderCards(PROJECTS.filter(p => p.type !== "game"));
+$("#games-grid").innerHTML = renderCards(PROJECTS.filter(p => p.type === "game"));
 
-$$(".chip").forEach(chip => chip.addEventListener("click", () => {
-  $$(".chip").forEach(c => c.classList.toggle("active", c === chip));
+$$("#work .chip").forEach(chip => chip.addEventListener("click", () => {
+  $$("#work .chip").forEach(c => c.classList.toggle("active", c === chip));
   const f = chip.dataset.filter;
-  $$(".card").forEach(card => card.classList.toggle("hidden", f !== "all" && card.dataset.type !== f));
+  $$("#project-grid .card").forEach(card => card.classList.toggle("hidden", f !== "all" && card.dataset.type !== f));
 }));
 
 $$(".card").forEach(card => {
@@ -312,7 +314,7 @@ $$("[data-lab]").forEach(b => b.addEventListener("click", () => {
    8. COMMAND PALETTE (Ctrl/Cmd + K)
    ========================================================= */
 const COMMANDS = [
-  ...["home", "work", "about", "lab", "contact"].map(s => ({
+  ...["home", "work", "games", "about", "lab", "contact"].map(s => ({
     label: `Go to ${s}`, hint: "nav", run: () => document.getElementById(s).scrollIntoView() })),
   ...PROJECTS.map(p => ({ label: `Open ${p.title}`, hint: "project", run: () => openProject(p.id) })),
   { label: "Toggle theme", hint: "ui", run: () => $("#theme-toggle").click() },
