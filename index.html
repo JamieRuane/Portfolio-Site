@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -254,36 +254,53 @@
       </header>
 
       <div class="reflect-grid">
-        <article class="reflect-card reveal">
-          <span class="value-num mono">activity 01</span>
-          <h4>Name of activity · your role</h4>
-          <div class="todo">
-            <span class="todo-tag mono">to fill in</span>
-            <ul>
-              <li><strong>My contribution:</strong> what you actually did</li>
-              <li><strong>Impact on others</strong></li>
-              <li><strong>Impact on my own development</strong></li>
-              <li><strong>Skills I gained</strong></li>
-            </ul>
-          </div>
+        <article class="reflect-card activity reveal">
+          <figure class="evidence">
+            <img src="evidence/hope-foundation-kolkata.jpg" alt="Hope Foundation ambassadors gathered on the riverbank in Kolkata, with a large cable-stayed bridge behind them" loading="lazy" />
+            <figcaption class="mono">Hope Foundation ambassadors in Kolkata · March 2024</figcaption>
+          </figure>
+          <span class="value-num mono">volunteering · fundraising</span>
+          <h4>Hope Foundation ambassador</h4>
+          <p class="activity-lead">I raised <strong>over €2,500</strong> for the Hope Foundation, then travelled to Kolkata, India in March 2024 as one of its ambassadors to see the work the money supports.</p>
+          <dl class="activity-points">
+            <dt>My contribution</dt>
+            <dd>Fundraising in my own community ahead of the trip, then representing the foundation in Kolkata as part of a large ambassador group, visiting its projects and sharing what I saw with people back home.</dd>
+            <dt>Impact on others</dt>
+            <dd>The money went directly to the foundation's work with children and families in Kolkata. Telling people at home about it afterwards also helped build awareness and support beyond the trip itself.</dd>
+            <dt>Impact on my own development</dt>
+            <dd>Seeing the work first-hand put my own circumstances in perspective. It showed me how much difference organised, sustained effort can make, and made me want my own work to have a real effect on people.</dd>
+            <dt>Skills I gained</dt>
+            <dd>
+              <ul class="skill-chips">
+                <li>Fundraising</li><li>Communication</li><li>Adaptability</li><li>Teamwork</li><li>Cultural awareness</li><li>Resilience</li>
+              </ul>
+            </dd>
+          </dl>
         </article>
-        <article class="reflect-card reveal">
-          <span class="value-num mono">activity 02</span>
-          <h4>Name of activity · your role</h4>
-          <div class="todo">
-            <span class="todo-tag mono">to fill in</span>
-            <ul>
-              <li><strong>My contribution</strong></li>
-              <li><strong>Impact on others</strong></li>
-              <li><strong>Impact on my own development</strong></li>
-              <li><strong>Skills I gained</strong></li>
-            </ul>
-          </div>
+
+        <article class="reflect-card activity reveal">
+          <figure class="evidence">
+            <img src="evidence/student-council-amber-flag.jpg" alt="Coláiste Mhuire Askeaton student council and staff holding the Pieta Amber Flag for promoting positive mental health, with certificates" loading="lazy" />
+            <figcaption class="mono">Coláiste Mhuire Askeaton student council with the school's Amber Flag</figcaption>
+          </figure>
+          <span class="value-num mono">leadership · representation</span>
+          <h4>Student council member</h4>
+          <p class="activity-lead">I was <strong>elected by my peers</strong> to the student council at Coláiste Mhuire Askeaton, representing students' views to staff and helping to run school initiatives.</p>
+          <dl class="activity-points">
+            <dt>My contribution</dt>
+            <dd>Bringing students' ideas and concerns to council meetings and to staff, and helping to plan and run initiatives for the school, including work around positive mental health.</dd>
+            <dt>Impact on others</dt>
+            <dd>Students had a voice in decisions that affected them, and ideas raised by students could be turned into real changes around the school.</dd>
+            <dt>Impact on my own development</dt>
+            <dd>Being elected showed me that my peers trusted me to speak for them. I learned to listen properly, represent views that weren't always my own, and work with staff to find solutions that suited everyone.</dd>
+            <dt>Skills I gained</dt>
+            <dd>
+              <ul class="skill-chips">
+                <li>Leadership</li><li>Active listening</li><li>Representing others</li><li>Communication</li><li>Compromise</li><li>Organisation</li>
+              </ul>
+            </dd>
+          </dl>
         </article>
-      </div>
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p>Ideas: volunteering, peer mentoring, student societies, community projects, hackathons, leadership or class rep roles, outreach. Add photos, certificates or testimonials as evidence.</p>
       </div>
     </section>
 
@@ -441,6 +458,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

@@ -551,3 +551,35 @@ section[tabindex="-1"]:focus { outline: none; }
 
 /* Extra heading inside the project drawer */
 .drawer-h { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 32px 0 12px; }
+
+/* =========================================================
+   BEYOND THE CLASSROOM — activity cards with photo evidence
+   ========================================================= */
+.activity { gap: 12px; padding: 0 0 24px; overflow: hidden; }
+.activity > :not(.evidence) { margin-left: 24px; margin-right: 24px; }
+.evidence { margin: 0 0 8px; position: relative; }
+.evidence img {
+  display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+  transition: transform .6s var(--ease);
+}
+.activity:hover .evidence img { transform: scale(1.03); }
+.evidence figcaption {
+  position: absolute; left: 12px; bottom: 12px; right: 12px; width: fit-content; max-width: calc(100% - 24px);
+  padding: 4px 10px; border-radius: 6px; font-size: 11px;
+  background: rgba(0, 0, 0, .6); color: #fff; backdrop-filter: blur(4px);
+}
+.activity-lead { margin-top: 0; margin-bottom: 4px; font-size: 18px; }
+.activity-lead strong { color: var(--accent-text); font-weight: 600; }
+.activity-points { margin: 0; display: grid; gap: 4px; }
+.activity-points dt {
+  font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em;
+  color: var(--accent-text); margin-top: 12px;
+}
+.activity-points dd { margin: 0; color: var(--muted); font-size: 16px; }
+.skill-chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-chips li {
+  font: 12px var(--mono); padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--fg);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.skill-chips li:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
