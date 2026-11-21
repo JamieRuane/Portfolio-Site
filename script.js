@@ -37,7 +37,7 @@ const PROJECTS = [
 const ROTATING_WORDS = ["games", "learning tools", "dev tools", "web apps"];
 const EMAIL = "26445751@studentmail.ul.ie";
 const LINKEDIN = "https://www.linkedin.com/in/jamie-ruane-98090329a/";
-const CV_FILE = "";  // e.g. "cv.pdf" once you add your CV next to index.html; empty hides the button
+const CV_FILE = "Jamie_Ruane_CV.pdf";  // the CV next to index.html; set to "" to hide the button
 
 // "What I learned from others" blog posts. Newest first. Add a new object to add a post.
 // kind: "Lecturer" | "Students" | "Guest speaker" | "Industry event" (any short label works)
@@ -456,6 +456,7 @@ const COMMANDS = [
   { label: "Open terminal", hint: "fun", run: openTerminal },
   ...POSTS.map(p => ({ label: `Read: ${p.title}`, hint: "talk", run: () => openPost(p.id) })),
   { label: "Open LinkedIn", hint: "contact", run: () => window.open(LINKEDIN, "_blank", "noopener") },
+  ...(CV_FILE ? [{ label: "Open CV", hint: "contact", run: () => window.open(CV_FILE, "_blank", "noopener") }] : []),
   { label: "Copy email", hint: "contact", run: () => navigator.clipboard?.writeText(EMAIL).then(() => toast("email copied")) },
 ];
 const palette = $("#palette"), pInput = $("#palette-input"), pList = $("#palette-list");
@@ -486,14 +487,15 @@ $("#open-palette").addEventListener("click", openPalette);
    ========================================================= */
 const term = $("#terminal"), tOut = $("#term-out"), tIn = $("#term-input");
 const TERM = {
-  help: () => "commands: <span class='acc'>whoami, projects, open &lt;id&gt;, talks, read &lt;id&gt;, skills, contact, theme, accent, clear, exit</span>",
+  help: () => "commands: <span class='acc'>whoami, projects, open &lt;id&gt;, talks, read &lt;id&gt;, skills, contact, cv, theme, accent, clear, exit</span>",
   whoami: () => "Jamie Ruane — student developer at the University of Limerick.\nI build games, learning platforms and tools developers actually use.",
   projects: () => PROJECTS.map(p => `  <span class='acc'>${p.id.padEnd(10)}</span>${p.title} — ${p.blurb}`).join("\n"),
   talks: () => POSTS.map(p => `  <span class='acc'>${p.id.padEnd(22)}</span>${p.title}`).join("\n"),
   read: id => { const p = POSTS.find(x => x.id === id); if (!p) return `no post "${id}". try 'talks'`; term.close(); openPost(id); return ""; },
   open: id => { const p = PROJECTS.find(x => x.id === id); if (!p) return `no project "${id}". try 'projects'`; term.close(); openProject(id); return ""; },
   skills: () => "languages  TypeScript · JavaScript · Python · C · C++ · C#\nfrontend   React · Three.js · Canvas\nbackend    Node.js · Firebase / Firestore\ntesting    Vitest · node:test · Firebase emulators",
-  contact: () => `email:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>\nlinkedin: <span class='acc'>linkedin.com/in/jamie-ruane-98090329a</span>`,
+  contact: () => `email:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>\nlinkedin: <span class='acc'>linkedin.com/in/jamie-ruane-98090329a</span>` + (CV_FILE ? `\ncv:     type <span class='acc'>cv</span> to open it` : ""),
+  cv: () => { if (!CV_FILE) return "no CV yet"; window.open(CV_FILE, "_blank", "noopener"); return "opening CV…"; },
   theme: () => { $("#theme-toggle").click(); return `theme → ${root.dataset.theme}`; },
   accent: () => { shuffleAccent(); return "accent shuffled"; },
   sudo: () => "nice try.",
