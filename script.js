@@ -3,7 +3,7 @@
    ========================================================= */
 // `links` is optional: add { label, url } pairs (live demo, repo…) and they appear in the detail panel.
 const PROJECTS = [
-  { id: "drift", title: "Drift City", type: "game", label: "Browser game",
+  { id: "drift", title: "Drift City", type: "game", label: "Browser game", logo: "logos/driftcity.png",
     blurb: "An endless neon-city arcade racer for desktop and mobile.",
     tags: ["TypeScript", "React 19", "Three.js", "Zustand", "Vite"],
     thumb: "linear-gradient(135deg,#1a0533,#ff2e88,#00e5ff)",
@@ -13,12 +13,12 @@ const PROJECTS = [
     tags: ["JavaScript", "Canvas / WebGL", "Game AI"],
     thumb: "linear-gradient(135deg,#0f2027,#2c5364,#ff3b3b)",
     body: "A browser shooter with its own city builder, enemy AI, weapon system, multiple game modes, HUD, menus, audio and a persistent player profile, all split into hand-written modules with no game engine." },
-  { id: "taster", title: "Taster", type: "web", label: "Web app",
+  { id: "taster", title: "Taster", type: "web", label: "Web app", logo: "logos/taster.png",
     blurb: "Try an Irish college course before you put it on your CAO.",
     tags: ["JavaScript", "HTML", "CSS"],
     thumb: "linear-gradient(135deg,#134e5e,#71b280)",
     body: "Search any Irish undergraduate course and actually try the work: real tasks, a real week and real exam questions. Course content covers areas from engineering and architecture to arts, business and pharmacy, so students can test-drive a course before committing to it." },
-  { id: "codequest", title: "Code Quest", type: "web", label: "Learning platform",
+  { id: "codequest", title: "Code Quest", type: "web", label: "Learning platform", logo: "logos/codequest.png",
     blurb: "Duolingo-style courses that teach nine programming languages by doing.",
     tags: ["Node.js", "Firebase", "Firestore", "sql.js"],
     thumb: "linear-gradient(135deg,#3a1c71,#d76d77,#ffaf7b)",
@@ -263,6 +263,7 @@ $("#year").textContent = new Date().getFullYear();
 const renderCards = list => list.map((p, i) => `
   <article class="card reveal" data-type="${p.type}" data-id="${p.id}" data-cursor="open" tabindex="0">
     <div class="thumb" style="--thumb:${p.thumb}"></div>
+    ${p.logo ? `<img class="logo" src="${p.logo}" alt="${p.title} logo" loading="lazy" />` : ""}
     <span class="idx">${String(i + 1).padStart(2, "0")} / ${p.label}</span>
     <div class="meta">
       <h3>${p.title}</h3>
@@ -297,7 +298,7 @@ function openProject(id) {
   const p = PROJECTS.find(x => x.id === id);
   if (!p) return;
   $("#project-drawer .drawer-body").innerHTML = `
-    <div class="hero-img" style="--thumb:${p.thumb}"></div>
+    <div class="hero-img" style="--thumb:${p.thumb}">${p.logo ? `<img class="logo" src="${p.logo}" alt="${p.title} logo" />` : ""}</div>
     <p class="mono" style="color:var(--muted)">${p.label}</p>
     <h2>${p.title}</h2>
     <p>${p.blurb}</p>
