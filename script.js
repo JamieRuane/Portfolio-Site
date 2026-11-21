@@ -37,6 +37,7 @@ const PROJECTS = [
 const ROTATING_WORDS = ["games", "learning tools", "dev tools", "web apps"];
 const EMAIL = "26445751@studentmail.ul.ie";
 const LINKEDIN = "https://www.linkedin.com/in/jamie-ruane-98090329a/";
+const CV_FILE = "";  // e.g. "cv.pdf" once you add your CV next to index.html; empty hides the button
 
 // "What I learned from others" blog posts. Newest first. Add a new object to add a post.
 // kind: "Lecturer" | "Students" | "Guest speaker" | "Industry event" (any short label works)
@@ -56,6 +57,8 @@ const POSTS = [
       "The idea of hidden networks stuck with me. I had been thinking of career progress as applying for roles one at a time, but a lot of it comes from the people you meet, the conversations you have and who remembers you.",
       "He was honest that it isn't always easy, and that plans change. Hearing that resilience and adaptability matter as much as technical skill was reassuring, because it means setbacks are part of the process rather than a sign that you're on the wrong track.",
     ],
+    surprised: "",   // to fill in: something that surprised you
+    challenged: "",  // to fill in: a lesson that challenged your thinking
     next: "Treat events and conversations as part of my career, not extras: go to more of them, follow up with people, and stay open to paths I haven't considered yet." },
 
   { id: "ciaran-oran", date: "2026-11-18", kind: "Students",
@@ -72,6 +75,8 @@ const POSTS = [
       "The main lesson was that there isn't one ranking of residencies. A placement that's perfect for someone who wants to work at a big company might be wrong for someone who wants to try a startup, learn a particular stack or explore a different area.",
       "That changed how I'm thinking about it. Before choosing, I need to know what I actually want to get from a residency, and I need to know the industry well enough to tell which companies can offer that.",
     ],
+    surprised: "",   // to fill in: something that surprised you
+    challenged: "",  // to fill in: a lesson that challenged your thinking
     next: "Write down what I want from a residency, research the companies properly, and talk to students who have worked there before I rank my choices." },
 
   { id: "birgit-penzenstadler", date: "2026-11-18", kind: "Guest speaker",
@@ -88,6 +93,8 @@ const POSTS = [
       "She also spoke about doing what you're passionate about. Her varied career showed that you don't have to pick one narrow lane early on, and that moving between areas can give you a broader view.",
       "That was encouraging for me, because my own projects already range from games to learning platforms to developer tools. Seeing that variety as a strength rather than a lack of focus was a useful shift in perspective.",
     ],
+    surprised: "",   // to fill in: something that surprised you
+    challenged: "",  // to fill in: a lesson that challenged your thinking
     next: "Keep following the projects I'm genuinely excited about, and start asking how what I build could be more sustainable." },
 ];
 
@@ -274,8 +281,8 @@ const renderCards = list => list.map((p, i) => `
 $("#project-grid").innerHTML = renderCards(PROJECTS.filter(p => p.type !== "game"));
 $("#games-grid").innerHTML = renderCards(PROJECTS.filter(p => p.type === "game"));
 
-$$("#work .chip").forEach(chip => chip.addEventListener("click", () => {
-  $$("#work .chip").forEach(c => c.classList.toggle("active", c === chip));
+$$("#developed .chip").forEach(chip => chip.addEventListener("click", () => {
+  $$("#developed .chip").forEach(c => c.classList.toggle("active", c === chip));
   const f = chip.dataset.filter;
   $$("#project-grid .card").forEach(card => card.classList.toggle("hidden", f !== "all" && card.dataset.type !== f));
 }));
@@ -305,8 +312,16 @@ function openProject(id) {
     <p style="color:var(--muted)">${p.body.replace(/`([^`]+)`/g, "<code>$1</code>")}</p>
     <div class="tags drawer-tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
     ${p.links ? `<div class="hero-cta" style="margin-top:28px">${p.links.map((l, i) =>
-      `<a class="btn ${i ? "ghost" : ""}" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("")}</div>` : ""}`;
+      `<a class="btn ${i ? "ghost" : ""}" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("")}</div>` : ""}
+    <h4 class="drawer-h">What it taught me</h4>
+    ${p.learned ? `<p>${p.learned}</p>` : todo("What did building this teach you, technically and professionally? What would you do differently next time? Add it as a <code>learned</code> field on this project in script.js.")}`;
   $("#project-drawer").showModal();
+  $("#project-drawer").scrollTop = 0;
+}
+
+// Placeholder block for sections still to be written (styled by .todo in style.css)
+function todo(text) {
+  return `<div class="todo"><span class="todo-tag mono">to fill in</span><p>${text}</p></div>`;
 }
 
 /* =========================================================
@@ -322,9 +337,17 @@ $("#posts").innerHTML = POSTS.map(p => `
     <p class="speaker">${p.speaker}</p>
     <p class="excerpt">${p.excerpt}</p>
     <span class="read mono">Read reflection <span>→</span></span>
+  </article>`).join("")
+  // The brief needs at least four talks or events: show placeholder cards until there are four.
+  + Array.from({ length: Math.max(0, 4 - POSTS.length) }, (_, i) => `
+  <article class="post post-placeholder reveal" aria-label="Placeholder for talk ${POSTS.length + i + 1}">
+    <div class="post-meta mono"><span class="post-kind">to fill in</span></div>
+    <h3>Talk ${POSTS.length + i + 1}</h3>
+    <p class="excerpt">Add your notes from another guest speaker, industry talk or employer event here.</p>
   </article>`).join("");
+$("#post-count").textContent = `· ${POSTS.length} of 4+ reflections`;
 
-$$(".post").forEach(el => {
+$$(".post:not(.post-placeholder)").forEach(el => {
   el.addEventListener("pointermove", e => {
     const r = el.getBoundingClientRect();
     el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
@@ -344,9 +367,13 @@ function openPost(id) {
       <h2>${p.title}</h2>
       <p class="speaker">${p.speaker}</p>
       ${p.body.map(par => `<p>${par}</p>`).join("")}
-      <h4>Key takeaways</h4>
+      <h4>Key messages</h4>
       <ul class="takeaways">${p.takeaways.map(t => `<li>${t}</li>`).join("")}</ul>
-      <div class="next"><h4 style="margin-top:0">What I'll do with it</h4><p>${p.next}</p></div>
+      <h4>Something that surprised me</h4>
+      ${p.surprised ? `<p>${p.surprised}</p>` : todo("What surprised you in this talk? Add it as the <code>surprised</code> field on this post in script.js.")}
+      <h4>A lesson that challenged my thinking</h4>
+      ${p.challenged ? `<p>${p.challenged}</p>` : todo("Which idea challenged how you saw things before? Add it as the <code>challenged</code> field.")}
+      <div class="next"><h4 style="margin-top:0">How this may influence my career decisions</h4><p>${p.next}</p></div>
     </article>`;
   $("#project-drawer").showModal();
   $("#project-drawer").scrollTop = 0;
@@ -358,6 +385,14 @@ $$("dialog").forEach(d => {
     if (e.target === d || e.target.closest("[data-close]")) d.close();
   });
 });
+
+/* Phone / small-screen menu: close it when a section link is chosen */
+const menu = $("#menu");
+$("#open-menu").addEventListener("click", () => menu.showModal());
+$$("#menu a").forEach(a => a.addEventListener("click", () => menu.close()));
+
+/* "Download CV" button: shown only when CV_FILE is set (see the top of this file) */
+if (CV_FILE) { $("#cv-link").href = CV_FILE; $("#cv-link").hidden = false; }
 
 /* =========================================================
    5. SCROLL — reveal, progress bar, active section index
@@ -412,7 +447,7 @@ $$("[data-lab]").forEach(b => b.addEventListener("click", () => {
    8. COMMAND PALETTE (Ctrl/Cmd + K)
    ========================================================= */
 const COMMANDS = [
-  ...["home", "work", "games", "about", "learned", "lab", "contact"].map(s => ({
+  ...["home", "about", "learn-more", "learned", "industry", "beyond", "developed", "next", "contact", "lab"].map(s => ({
     label: `Go to ${s}`, hint: "nav", run: () => document.getElementById(s).scrollIntoView() })),
   ...PROJECTS.map(p => ({ label: `Open ${p.title}`, hint: "project", run: () => openProject(p.id) })),
   { label: "Toggle theme", hint: "ui", run: () => $("#theme-toggle").click() },
