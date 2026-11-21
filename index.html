@@ -10,31 +10,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
   <!-- Interactive background: a particle field that reacts to the cursor -->
   <canvas id="field" aria-hidden="true"></canvas>
 
-  <!-- Custom cursor (hidden on touch devices) -->
+  <!-- Custom cursor follower (hidden on touch devices; the normal pointer stays visible) -->
   <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
 
   <!-- Top bar -->
   <header class="topbar">
-    <a href="#home" class="logo" data-magnetic>JR<span class="blink">_</span></a>
-    <nav class="nav">
-      <a href="#work" data-magnetic>Work</a>
-      <a href="#games" data-magnetic>Games</a>
+    <a href="#home" class="logo" data-magnetic aria-label="Jamie Ruane, back to top">JR<span class="blink">_</span></a>
+    <nav class="nav" aria-label="Sections">
       <a href="#about" data-magnetic>About</a>
-      <a href="#learned" data-magnetic>Talks</a>
-      <a href="#lab" data-magnetic>Lab</a>
-      <a href="#contact" data-magnetic>Contact</a>
+      <a href="#learn-more" data-magnetic>Learn more</a>
+      <a href="#learned" data-magnetic>Learned</a>
+      <a href="#industry" data-magnetic>Industry</a>
+      <a href="#beyond" data-magnetic>Beyond</a>
+      <a href="#developed" data-magnetic>This year</a>
+      <a href="#next" data-magnetic>Next</a>
     </nav>
     <div class="topbar-actions">
       <button class="kbd-btn" id="open-palette" data-magnetic aria-label="Open command palette">
         <kbd>Ctrl</kbd><kbd>K</kbd>
       </button>
       <button class="icon-btn" id="theme-toggle" data-magnetic aria-label="Toggle colour theme">◐</button>
+      <button class="icon-btn menu-btn" id="open-menu" aria-label="Open menu" aria-haspopup="dialog">☰</button>
     </div>
   </header>
 
@@ -42,15 +46,16 @@
   <div class="progress" aria-hidden="true"><span></span></div>
   <ol class="section-index" aria-hidden="true">
     <li data-target="home">00</li>
-    <li data-target="work">01</li>
-    <li data-target="games">02</li>
-    <li data-target="about">03</li>
-    <li data-target="learned">04</li>
-    <li data-target="lab">05</li>
-    <li data-target="contact">06</li>
+    <li data-target="about">01</li>
+    <li data-target="learn-more">02</li>
+    <li data-target="learned">03</li>
+    <li data-target="industry">04</li>
+    <li data-target="beyond">05</li>
+    <li data-target="developed">06</li>
+    <li data-target="next">07</li>
   </ol>
 
-  <main>
+  <main id="main">
     <!-- 00 — HERO -->
     <section id="home" class="hero">
       <p class="eyebrow mono">// hello, world — currently <span id="clock">--:--</span> local</p>
@@ -61,48 +66,21 @@
       </h1>
       <p class="hero-sub">Jamie Ruane — student developer at the University of Limerick. I build browser games, learning platforms and tools that make developers' days easier.</p>
       <div class="hero-cta">
-        <a href="#work" class="btn" data-magnetic data-cursor="view">See the work</a>
+        <a href="#about" class="btn" data-magnetic data-cursor="hello">About me</a>
+        <a href="#developed" class="btn ghost" data-magnetic data-cursor="view">See my projects</a>
         <a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" class="btn ghost" target="_blank" rel="noopener" data-magnetic data-cursor="connect">LinkedIn ↗</a>
         <button class="btn ghost" id="open-terminal" data-magnetic data-cursor="type">Open terminal ›_</button>
       </div>
       <p class="hint mono">move your mouse · click to ripple · try the Konami code</p>
     </section>
 
-    <!-- 01 — WORK -->
-    <section id="work" class="work">
+    <!-- 01 — ABOUT ME -->
+    <section id="about" class="about" tabindex="-1">
       <header class="section-head">
         <span class="mono num">01</span>
-        <h2>Selected work</h2>
-        <div class="filters" role="tablist" aria-label="Filter projects">
-          <button class="chip active" data-filter="all">All</button>
-          <button class="chip" data-filter="web">Web</button>
-          <button class="chip" data-filter="tool">Tools</button>
-        </div>
-      </header>
-
-      <div class="grid" id="project-grid">
-        <!-- Cards are rendered from the PROJECTS array in script.js -->
-      </div>
-    </section>
-
-    <!-- 02 — GAMES (side projects, shown smaller than the main work) -->
-    <section id="games" class="games">
-      <header class="section-head">
-        <span class="mono num">02</span>
-        <h2>Games</h2>
-        <p class="section-note">Side projects I build for fun.</p>
-      </header>
-      <div class="grid compact" id="games-grid"></div>
-    </section>
-
-    <!-- 03 — ABOUT -->
-    <section id="about" class="about">
-      <header class="section-head">
-        <span class="mono num">03</span>
-        <h2>About</h2>
+        <h2>About me</h2>
       </header>
       <div class="about-grid">
-        <!-- Professional photo: save it as photo.jpg next to index.html. Initials show until it exists. -->
         <figure class="portrait reveal">
           <img src="photo.jpg" alt="Jamie Ruane" onerror="this.closest('figure').classList.add('missing')" />
           <span class="portrait-fallback" aria-hidden="true">JR</span>
@@ -110,9 +88,15 @@
         <div class="about-text reveal">
           <p class="big">I'm Jamie, a student at the University of Limerick who likes building things people actually use, from neon arcade racers to courses that teach nine programming languages.</p>
           <p>I care about the details that make software feel good: procedurally generated audio in a racing game, exercises that are checked against a real compiler, a CLI with zero dependencies. Most of what I build starts as something I wanted to exist, and I keep going until it's polished enough to share.</p>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <p>Add one sentence on what you're looking for, written for a residency partner. For example, the kind of team, work or residency you want and what you'd bring to it.</p>
+          </div>
           <div class="about-links">
             <a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" class="btn small" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a>
             <a href="mailto:26445751@studentmail.ul.ie" class="btn small ghost" data-magnetic>Email me</a>
+            <!-- Shown once CV_FILE is set at the top of script.js -->
+            <a href="cv.pdf" class="btn small ghost" id="cv-link" target="_blank" rel="noopener" data-magnetic hidden>Download CV ↓</a>
           </div>
         </div>
         <div class="stack reveal">
@@ -144,20 +128,254 @@
       </div>
     </section>
 
-    <!-- 04 — WHAT I LEARNED FROM OTHERS (blog posts rendered from POSTS in script.js) -->
+    <!-- 02 — LEARN MORE: professional identity, strengths, values -->
+    <section id="learn-more" class="learn-more">
+      <header class="section-head">
+        <span class="mono num">02</span>
+        <h2>Learn more</h2>
+        <p class="section-note">Who I am professionally, my strengths and what I value.</p>
+      </header>
+
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p><strong>Professional identity.</strong> A short paragraph on who you are as an emerging professional: how you like to work, what drives you, and where you want to take it.</p>
+      </div>
+
+      <h3 class="sub-head">Key strengths</h3>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>List 3–5 strengths, each with a one-line piece of evidence (a project, a team experience, feedback you got).</p>
+      </div>
+
+      <h3 class="sub-head">Three values that guide how I work</h3>
+      <div class="values-grid">
+        <article class="value-card reveal">
+          <span class="value-num mono">value 01</span>
+          <h4>Name your first value</h4>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <ul>
+              <li><strong>Example:</strong> a time this value showed up, from the values workshop, teamwork, an academic project or a personal experience</li>
+              <li><strong>Why it matters to me</strong></li>
+              <li><strong>How it shapes the way I work with others</strong></li>
+              <li><strong>How it fits my future career goals</strong></li>
+            </ul>
+          </div>
+        </article>
+        <article class="value-card reveal">
+          <span class="value-num mono">value 02</span>
+          <h4>Name your second value</h4>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <ul>
+              <li><strong>Example</strong></li>
+              <li><strong>Why it matters to me</strong></li>
+              <li><strong>How it shapes the way I work with others</strong></li>
+              <li><strong>How it fits my future career goals</strong></li>
+            </ul>
+          </div>
+        </article>
+        <article class="value-card reveal">
+          <span class="value-num mono">value 03</span>
+          <h4>Name your third value</h4>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <ul>
+              <li><strong>Example</strong></li>
+              <li><strong>Why it matters to me</strong></li>
+              <li><strong>How it shapes the way I work with others</strong></li>
+              <li><strong>How it fits my future career goals</strong></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 — WHAT I LEARNED FROM OTHERS (blog posts rendered from POSTS in script.js) -->
     <section id="learned" class="learned">
       <header class="section-head">
-        <span class="mono num">04</span>
+        <span class="mono num">03</span>
         <h2>What I learned from others</h2>
-        <p class="section-note">Reflections on guest talks and industry events.</p>
+        <p class="section-note">Reflections on guest speakers, industry talks and events. <span class="mono" id="post-count"></span></p>
       </header>
       <div class="posts" id="posts"></div>
     </section>
 
-    <!-- 05 — LAB (playground of small experiments) -->
-    <section id="lab" class="lab">
+    <!-- 04 — PROFESSIONAL & INDUSTRY -->
+    <section id="industry" class="industry">
+      <header class="section-head">
+        <span class="mono num">04</span>
+        <h2>Professional &amp; industry</h2>
+        <p class="section-note">Career Connect, networking and hackathons.</p>
+      </header>
+
+      <div class="reflect-grid">
+        <article class="reflect-card reveal">
+          <span class="value-num mono">career connect</span>
+          <h4>Before the event</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>What did you expect going in? What were you hoping to find out, and how did you prepare?</p></div>
+        </article>
+        <article class="reflect-card reveal">
+          <span class="value-num mono">career connect</span>
+          <h4>What I learned about employers &amp; residencies</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>What did you learn about the companies there and the residency opportunities they offer?</p></div>
+        </article>
+        <article class="reflect-card reveal">
+          <span class="value-num mono">career connect</span>
+          <h4>Conversations that stood out</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>Which conversations or interactions stuck with you, and why?</p></div>
+        </article>
+        <article class="reflect-card reveal">
+          <span class="value-num mono">career connect</span>
+          <h4>What I'll do as a result</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>Specific actions you'll take: companies to follow up with, skills to work on, applications to make.</p></div>
+        </article>
+      </div>
+
+      <h3 class="sub-head">Hackathons &amp; networking</h3>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>Any hackathons, employer events or networking you took part in. What you did, who you met, what came of it.</p>
+      </div>
+
+      <h3 class="sub-head">Evidence</h3>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>Photos, notes, or screenshots of LinkedIn connections from the event. Save images in an <code>evidence</code> folder and I'll lay them out as a gallery.</p>
+      </div>
+    </section>
+
+    <!-- 05 — BEYOND THE CLASSROOM -->
+    <section id="beyond" class="beyond">
       <header class="section-head">
         <span class="mono num">05</span>
+        <h2>Beyond the classroom</h2>
+        <p class="section-note">Volunteering, societies, mentoring and leadership.</p>
+      </header>
+
+      <div class="reflect-grid">
+        <article class="reflect-card reveal">
+          <span class="value-num mono">activity 01</span>
+          <h4>Name of activity · your role</h4>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <ul>
+              <li><strong>My contribution:</strong> what you actually did</li>
+              <li><strong>Impact on others</strong></li>
+              <li><strong>Impact on my own development</strong></li>
+              <li><strong>Skills I gained</strong></li>
+            </ul>
+          </div>
+        </article>
+        <article class="reflect-card reveal">
+          <span class="value-num mono">activity 02</span>
+          <h4>Name of activity · your role</h4>
+          <div class="todo">
+            <span class="todo-tag mono">to fill in</span>
+            <ul>
+              <li><strong>My contribution</strong></li>
+              <li><strong>Impact on others</strong></li>
+              <li><strong>Impact on my own development</strong></li>
+              <li><strong>Skills I gained</strong></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>Ideas: volunteering, peer mentoring, student societies, community projects, hackathons, leadership or class rep roles, outreach. Add photos, certificates or testimonials as evidence.</p>
+      </div>
+    </section>
+
+    <!-- 06 — HOW I DEVELOPED THIS YEAR: projects + reflection -->
+    <section id="developed" class="developed">
+      <header class="section-head">
+        <span class="mono num">06</span>
+        <h2>How I developed this year</h2>
+        <p class="section-note">Projects, what they taught me, and industry engagement.</p>
+      </header>
+
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p><strong>Looking back on the year.</strong> How have you grown technically and professionally? What can you do now that you couldn't at the start? Open a project below to add what each one taught you.</p>
+      </div>
+
+      <div class="sub-head-row">
+        <h3 class="sub-head">Projects</h3>
+        <div class="filters" role="tablist" aria-label="Filter projects">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="web">Web</button>
+          <button class="chip" data-filter="tool">Tools</button>
+        </div>
+      </div>
+      <div class="grid" id="project-grid">
+        <!-- Cards are rendered from the PROJECTS array in script.js -->
+      </div>
+
+      <div class="sub-head-row">
+        <h3 class="sub-head">Games</h3>
+        <p class="section-note">Side projects I build for fun.</p>
+      </div>
+      <div class="grid compact" id="games-grid"></div>
+
+      <h3 class="sub-head">Industry engagement</h3>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>Industry-facing work this year: residency applications, interviews, company visits, open-source contributions, publishing standup-scribe to npm, and what each taught you.</p>
+      </div>
+    </section>
+
+    <!-- 07 — WHERE AM I GOING NEXT? personal development plan -->
+    <section id="next" class="next">
+      <header class="section-head">
+        <span class="mono num">07</span>
+        <h2>Where am I going next?</h2>
+        <p class="section-note">My personal development plan.</p>
+      </header>
+
+      <ol class="pdp">
+        <li class="pdp-step reveal">
+          <span class="pdp-when mono">next 6 months</span>
+          <h4>Short-term goal</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>Goal</strong></li><li><strong>Actions</strong> I'll take</li><li><strong>How I'll know</strong> I've achieved it</li></ul></div>
+        </li>
+        <li class="pdp-step reveal">
+          <span class="pdp-when mono">residency</span>
+          <h4>Residency goal</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>The residency I'm aiming for</strong> and why</li><li><strong>Skills to build</strong> before it</li><li><strong>What I want to get out of it</strong></li></ul></div>
+        </li>
+        <li class="pdp-step reveal">
+          <span class="pdp-when mono">3–5 years</span>
+          <h4>Long-term direction</h4>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>Where I want to be</strong></li><li><strong>The steps</strong> to get there</li><li><strong>What could change</strong> the plan</li></ul></div>
+        </li>
+      </ol>
+
+      <h3 class="sub-head">Skills I'm developing</h3>
+      <div class="todo reveal">
+        <span class="todo-tag mono">to fill in</span>
+        <p>Technical and professional skills you're working on next, and how: courses, projects, practice, mentors.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <header class="section-head">
+        <span class="mono num">@</span>
+        <h2>Let's make something.</h2>
+      </header>
+      <a href="mailto:26445751@studentmail.ul.ie" class="mega-link" data-magnetic data-cursor="say hi">26445751@<wbr>studentmail.ul.ie</a>
+      <ul class="socials">
+        <li><a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a></li>
+        <li><a href="https://github.com/JamieRuane" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a></li>
+        <li><a href="https://www.npmjs.com/package/standup-scribe" target="_blank" rel="noopener" data-magnetic>npm ↗</a></li>
+      </ul>
+    </section>
+
+    <!-- EXTRAS: small interactive experiments -->
+    <section id="lab" class="lab">
+      <header class="section-head">
+        <span class="mono num">+</span>
         <h2>The lab</h2>
         <p class="section-note">Small experiments. Poke them.</p>
       </header>
@@ -172,26 +390,7 @@
           <p>Re-roll the site's accent colour.</p>
           <button class="btn small" data-lab="accent">Shuffle</button>
         </article>
-        <article class="lab-tile reveal">
-          <h3>Experiment #3</h3>
-          <p>Placeholder — drop a mini demo, shader or game here.</p>
-        </article>
       </div>
-    </section>
-
-    <!-- 06 — CONTACT -->
-    <section id="contact" class="contact">
-      <header class="section-head">
-        <span class="mono num">06</span>
-        <h2>Let's make something.</h2>
-      </header>
-      <a href="mailto:26445751@studentmail.ul.ie" class="mega-link" data-magnetic data-cursor="say hi">26445751@<wbr>studentmail.ul.ie</a>
-      <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/jamie-ruane-98090329a/" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a></li>
-        <li><a href="https://github.com/JamieRuane" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a></li>
-        <li><a href="https://www.npmjs.com/package/standup-scribe" target="_blank" rel="noopener" data-magnetic>npm ↗</a></li>
-        <!-- Add more when ready, e.g. <li><a href="https://linkedin.com/in/…" data-magnetic>LinkedIn ↗</a></li> -->
-      </ul>
     </section>
   </main>
 
@@ -200,20 +399,37 @@
     <span>built from scratch · no frameworks</span>
   </footer>
 
-  <!-- Project detail drawer -->
+  <!-- Phone / small-screen menu -->
+  <dialog class="menu" id="menu" aria-label="Site menu">
+    <button class="icon-btn close" data-close aria-label="Close menu">✕</button>
+    <nav aria-label="Sections">
+      <ol class="menu-list">
+        <li><a href="#about"><span class="mono">01</span>About me</a></li>
+        <li><a href="#learn-more"><span class="mono">02</span>Learn more</a></li>
+        <li><a href="#learned"><span class="mono">03</span>What I learned from others</a></li>
+        <li><a href="#industry"><span class="mono">04</span>Professional &amp; industry</a></li>
+        <li><a href="#beyond"><span class="mono">05</span>Beyond the classroom</a></li>
+        <li><a href="#developed"><span class="mono">06</span>How I developed this year</a></li>
+        <li><a href="#next"><span class="mono">07</span>Where am I going next?</a></li>
+        <li><a href="#contact"><span class="mono">@</span>Contact</a></li>
+      </ol>
+    </nav>
+  </dialog>
+
+  <!-- Project / post detail drawer -->
   <dialog class="drawer" id="project-drawer">
     <button class="icon-btn close" data-close aria-label="Close">✕</button>
     <div class="drawer-body"></div>
   </dialog>
 
   <!-- Command palette -->
-  <dialog class="palette" id="palette">
-    <input type="text" id="palette-input" placeholder="Type a command or search…" autocomplete="off" />
+  <dialog class="palette" id="palette" aria-label="Command palette">
+    <input type="text" id="palette-input" placeholder="Type a command or search…" autocomplete="off" aria-label="Search commands" />
     <ul id="palette-list" role="listbox"></ul>
   </dialog>
 
   <!-- Terminal easter egg -->
-  <dialog class="terminal" id="terminal">
+  <dialog class="terminal" id="terminal" aria-label="Terminal">
     <div class="term-bar"><span></span><span></span><span></span><em class="mono">guest@portfolio: ~</em>
       <button class="icon-btn close" data-close aria-label="Close terminal">✕</button></div>
     <div class="term-out mono" id="term-out"></div>
@@ -225,6 +441,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
