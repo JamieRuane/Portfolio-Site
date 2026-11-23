@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -136,58 +136,101 @@
         <p class="section-note">Who I am professionally, my strengths and what I value.</p>
       </header>
 
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p><strong>Professional identity.</strong> A short paragraph on who you are as an emerging professional: how you like to work, what drives you, and where you want to take it.</p>
+      <div class="identity reveal">
+        <p class="big">I'm a first-year Immersive Software Engineering student at the University of Limerick, and I'm happiest when I'm building something real from start to finish.</p>
+        <p>I like to work end to end: designing an idea, writing the code, testing it properly and shipping it so other people can use it. I'm drawn to backend, cloud and DevOps work, and to using AI to automate the repetitive parts of people's jobs. What drives me is seeing something I built make a difference, whether that's a student learning to code on Code Quest or a developer saving ten minutes on their stand-up. I want to grow into an engineer who can lead technical teams and, one day, build products and companies of my own.</p>
       </div>
 
       <h3 class="sub-head">Key strengths</h3>
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p>List 3–5 strengths, each with a one-line piece of evidence (a project, a team experience, feedback you got).</p>
-      </div>
+      <ul class="strengths">
+        <li class="strength reveal">
+          <span class="strength-num mono">01</span>
+          <h4>Shipping complete projects</h4>
+          <p>I finish what I start. Code Quest has over 300 lessons across nine languages, standup-scribe is published on npm, and my AWS platform runs with automated CI/CD and monitoring.</p>
+        </li>
+        <li class="strength reveal">
+          <span class="strength-num mono">02</span>
+          <h4>Fast, self-directed learning</h4>
+          <p>I teach myself what a project needs, from AWS CDK and Docker to Three.js, and I'm building a mini C compiler purely to understand how C and assembly really work.</p>
+        </li>
+        <li class="strength reveal">
+          <span class="strength-num mono">03</span>
+          <h4>Leadership and representation</h4>
+          <p>I was elected by my peers as Chairperson of my school's student council in consecutive years, chairing meetings and representing students' views to staff.</p>
+        </li>
+        <li class="strength reveal">
+          <span class="strength-num mono">04</span>
+          <h4>Consistency under pressure</h4>
+          <p>I achieved 625 points with an H1 in all seven Leaving Certificate subjects, and I now balance full-time study with a part-time job and my own projects.</p>
+        </li>
+        <li class="strength reveal">
+          <span class="strength-num mono">05</span>
+          <h4>Communication</h4>
+          <p>From representing a whole student body to fundraising and speaking about the Hope Foundation's work, I'm comfortable explaining ideas clearly to different audiences.</p>
+        </li>
+      </ul>
 
       <h3 class="sub-head">Three values that guide how I work</h3>
+      <p class="section-note values-intro">These come from UL's Cultural Charter, which I explored in the ISE values workshop. They're the three that best describe how I already try to work, and who I want to be as an engineer.</p>
       <div class="values-grid">
         <article class="value-card reveal">
           <span class="value-num mono">value 01</span>
-          <h4>Name your first value</h4>
-          <div class="todo">
-            <span class="todo-tag mono">to fill in</span>
-            <ul>
-              <li><strong>Example:</strong> a time this value showed up, from the values workshop, teamwork, an academic project or a personal experience</li>
-              <li><strong>Why it matters to me</strong></li>
-              <li><strong>How it shapes the way I work with others</strong></li>
-              <li><strong>How it fits my future career goals</strong></li>
-            </ul>
-          </div>
+          <h4>Ambitious and driven</h4>
+          <p class="value-def">Work with others to push the boundaries of what's possible, and stick with the hard problem.</p>
+          <dl class="activity-points">
+            <dt>Why it matters to me</dt>
+            <dd>My Leaving Cert taught me what sustained effort can achieve. Aiming high gives me a reason to keep improving, and I'd rather try something ambitious and learn from it than settle for something easy.</dd>
+            <dt>A time I showed it</dt>
+            <dd>Code Quest started as one small course and grew into 300+ interactive lessons across nine programming languages, each checked against a real compiler. I kept going long after it would have been easy to stop.</dd>
+            <dt>How it shapes how I work with others</dt>
+            <dd>I try to set the standard by showing up prepared and doing my share. I'd rather lift a team's ambition by example than push my own pace onto other people.</dd>
+            <dt>How it fits my career goals</dt>
+            <dd>ISE aims to create future CEOs and CTOs. Ambition is what will push me to take on stretch residencies, lead technical work, and build Ampel, the AI automation business I'm starting for Irish SMEs.</dd>
+            <dt>How I'll show it this year</dt>
+            <dd>Apply for a residency that stretches me, and deliver Ampel's first real client project.</dd>
+          </dl>
         </article>
+
         <article class="value-card reveal">
           <span class="value-num mono">value 02</span>
-          <h4>Name your second value</h4>
-          <div class="todo">
-            <span class="todo-tag mono">to fill in</span>
-            <ul>
-              <li><strong>Example</strong></li>
-              <li><strong>Why it matters to me</strong></li>
-              <li><strong>How it shapes the way I work with others</strong></li>
-              <li><strong>How it fits my future career goals</strong></li>
-            </ul>
-          </div>
+          <h4>Creative and innovative</h4>
+          <p class="value-def">Look at things differently, weigh the risks, then trust my judgement.</p>
+          <dl class="activity-points">
+            <dt>Why it matters to me</dt>
+            <dd>Most of what I build starts as something I wished existed. Creativity is how I turn frustrations into tools, and it's what makes software engineering fun for me.</dd>
+            <dt>A time I showed it</dt>
+            <dd>For Drift City I had no art or audio assets, so I generated every 3D model, texture, sound effect and music track in code. A limitation became the game's defining feature.</dd>
+            <dt>How it shapes how I work with others</dt>
+            <dd>I'll suggest the bold idea and ask "why?" in code reviews, but I also make room for other people's ideas. The best solution often comes from combining them.</dd>
+            <dt>How it fits my career goals</dt>
+            <dd>I want to work on products, not just tickets. Creative problem solving is what lets an engineer spot opportunities like standup-scribe or Taster, and it's essential for building a startup.</dd>
+            <dt>How I'll show it this year</dt>
+            <dd>Pitch an unconventional solution at a hackathon or during residency, and keep shipping my own ideas.</dd>
+          </dl>
         </article>
+
         <article class="value-card reveal">
           <span class="value-num mono">value 03</span>
-          <h4>Name your third value</h4>
-          <div class="todo">
-            <span class="todo-tag mono">to fill in</span>
-            <ul>
-              <li><strong>Example</strong></li>
-              <li><strong>Why it matters to me</strong></li>
-              <li><strong>How it shapes the way I work with others</strong></li>
-              <li><strong>How it fits my future career goals</strong></li>
-            </ul>
-          </div>
+          <h4>Ethical and sustainable</h4>
+          <p class="value-def">Do the right thing, in the right way, and take on societal challenges.</p>
+          <dl class="activity-points">
+            <dt>Why it matters to me</dt>
+            <dd>Travelling to Kolkata with the Hope Foundation showed me how much difference doing the right thing can make to real people. Software affects people too, so how we build it matters as much as what we build.</dd>
+            <dt>A time I showed it</dt>
+            <dd>I raised over €2,500 for the Hope Foundation. In my own engineering, I gate releases on tests and code review, and I'm open about where I use AI tools, so I never ship code I couldn't explain.</dd>
+            <dt>How it shapes how I work with others</dt>
+            <dd>I'm honest early: I raise a problem on Tuesday rather than hide it until Friday, I own my bugs, and I give credit where it's due.</dd>
+            <dt>How it fits my career goals</dt>
+            <dd>I want to build technology people can trust. That means responsible use of AI in the automations I build, and thinking about the environmental cost of software, a lesson from Birgit Penzenstadler's talk.</dd>
+            <dt>How I'll show it this year</dt>
+            <dd>Label AI use honestly in my project write-ups, and consider sustainability when designing my own systems.</dd>
+          </dl>
         </article>
+      </div>
+
+      <div class="todo reveal values-evidence">
+        <span class="todo-tag mono">to fill in</span>
+        <p><strong>Evidence:</strong> add a photo of your group's flipchart from the ISE values workshop (save it in Pictures and I'll add it here).</p>
       </div>
     </section>
 
@@ -458,6 +501,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
