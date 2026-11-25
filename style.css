@@ -632,3 +632,8 @@ section[tabindex="-1"]:focus { outline: none; }
 .reflect-card > p { margin: 0; }
 .decl-sign { color: var(--accent-text); }
 .footer a { color: inherit; }
+
+/* Photos inside a talk write-up */
+.post-photo { margin: 20px 0; border-radius: 12px; overflow: hidden; }
+.post-photo img { aspect-ratio: 4 / 3; }
+.activity-lead a { color: var(--accent-text); }

@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -277,15 +277,47 @@
       </div>
 
       <h3 class="sub-head">Hackathons &amp; networking</h3>
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p>Any hackathons, employer events or networking you took part in. What you did, who you met, what came of it.</p>
+      <div class="reflect-grid">
+        <article class="reflect-card activity reveal">
+          <figure class="evidence">
+            <img src="evidence/middle-hackathon.jpg" style="object-position: center top" alt="The middLE game running inside a Reddit post, showing a score of 351 out of 500 across five crowd-guessing prompts" loading="lazy" />
+            <figcaption class="mono">middLE live in its test subreddit · November 2026</figcaption>
+          </figure>
+          <span class="value-num mono">hackathon</span>
+          <h4>Reddit Daily Game Hackathon</h4>
+          <p class="activity-lead">I'm building <strong>middLE</strong>, a daily game that runs inside Reddit posts, using Reddit's Devvit developer platform.</p>
+          <dl class="activity-points">
+            <dt>What I did</dt>
+            <dd>Designed the game, built the client and server, and playtested it daily in a test subreddit, shipping fixes through pull requests as problems showed up.</dd>
+            <dt>What I learned</dt>
+            <dd>Working within a real platform's rules, limits and deadline. Players behave in ways you don't plan for, so watching them play matters more than the first design.</dd>
+            <dt>What I'll do next</dt>
+            <dd>Submit by the 9 December deadline, then share middLE and the write-up on LinkedIn.</dd>
+          </dl>
+        </article>
+
+        <article class="reflect-card activity reveal">
+          <figure class="evidence">
+            <img src="evidence/msc-west-badge.jpg" style="object-position: center 76%" alt="Jamie holding a delegate badge for the Manufacturing and Supply Chain West Conference outside the UL Sport Arena" loading="lazy" />
+            <figcaption class="mono">Delegate at MSC West, UL Sport Arena · 25 November 2026</figcaption>
+          </figure>
+          <span class="value-num mono">industry event · networking</span>
+          <h4>Manufacturing &amp; Supply Chain West</h4>
+          <p class="activity-lead">A regional industry conference and exhibition on AI, automation and continuous improvement. <a href="#learned" data-post="msc-west">Read my reflection on the talks →</a></p>
+          <dl class="activity-points">
+            <dt>What I learned about employers</dt>
+            <dd>Manufacturers and their suppliers need software, data and automation skills, which makes them a residency route I hadn't considered.</dd>
+            <dt>Interactions that stood out</dt>
+            <dd>Talking to exhibitors about how they use automation in practice. Most described problems with data and adoption rather than with the technology itself.</dd>
+            <dt>Actions</dt>
+            <dd>Connect with the speakers and exhibitors I met on LinkedIn, and research industrial tech companies as residency options.</dd>
+          </dl>
+        </article>
       </div>
 
-      <h3 class="sub-head">Evidence</h3>
       <div class="todo reveal">
         <span class="todo-tag mono">to fill in</span>
-        <p>Photos, notes, or screenshots of LinkedIn connections from the event. Save images in an <code>evidence</code> folder and I'll lay them out as a gallery.</p>
+        <p><strong>Career Connect evidence:</strong> photos, notes or screenshots of LinkedIn connections from Career Connect.</p>
       </div>
     </section>
 
@@ -660,6 +692,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

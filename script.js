@@ -13,6 +13,15 @@ const PROJECTS = [
     tags: ["JavaScript", "Canvas / WebGL", "Game AI"],
     thumb: "linear-gradient(135deg,#0f2027,#2c5364,#ff3b3b)",
     body: "A browser shooter with its own city builder, enemy AI, weapon system, multiple game modes, HUD, menus, audio and a persistent player profile, all split into hand-written modules with no game engine." },
+  { id: "middle", title: "middLE", type: "game", label: "Reddit daily game · hackathon",
+    blurb: "A daily Reddit game where being right doesn't matter. Being average does.",
+    tags: ["Devvit Web", "TypeScript", "React 19", "Redis", "Hono"],
+    thumb: "linear-gradient(135deg,#ff6b35,#f7c548,#6c4ab6)",
+    body: "Built for the Reddit Daily Game Hackathon. Each day brings five prompts, like \"Where does blue stop and green begin?\", and you place a pin where you think the crowd will land, scored on distance from the subreddit's median. A scheduled job posts a new game every midnight, Redis stores each round as a histogram so scoring stays fast at any player count, and a seeded warm-up crowd keeps the first players of the day from being scored against nobody. Results share to the comments as spoiler-free emoji grids.",
+    learned: "Building for a real platform's rules, limits and deadline. I had to design for an empty game on day one, stop players gaming their own score, and fit the whole UI inside a post on a phone. Shipping fixes daily from playtesting taught me more than planning up front would have.",
+    links: [
+      { label: "Source ↗", url: "https://github.com/JamieRuane/middLE" },
+    ] },
   { id: "taster", title: "Taster", type: "web", label: "Web app", logo: "logos/taster.png",
     blurb: "Try an Irish college course before you put it on your CAO.",
     tags: ["JavaScript", "HTML", "CSS"],
@@ -96,6 +105,29 @@ const POSTS = [
     surprised: "",   // to fill in: something that surprised you
     challenged: "",  // to fill in: a lesson that challenged your thinking
     next: "Keep following the projects I'm genuinely excited about, and start asking how what I build could be more sustainable." },
+
+  { id: "msc-west", date: "2026-11-25", kind: "Industry conference",
+    title: "AI on the factory floor is about people first",
+    speaker: "Manufacturing & Supply Chain West Conference & Exhibition, UL Sport Arena",
+    excerpt: "A day of talks and panels on AI, automation and continuous improvement, and a look at how much software sits behind Irish manufacturing.",
+    photos: [
+      { src: "evidence/msc-west-panel.jpg", alt: "Four panellists seated on a stage branded Lean Productivity and Continuous Improvement, with an audience in front", caption: "Panel: Beyond Cost-Cutting, Building a Culture of Continuous Improvement" },
+      { src: "evidence/msc-west-ai-stage.jpg", alt: "A speaker presenting on the Digital Transformation and AI stage, seen past the AV desk", caption: "The Digital Transformation & AI stage" },
+    ],
+    takeaways: [
+      "AI and automation in manufacturing are practical now: the focus is on solving specific problems on the floor, not on hype.",
+      "Continuous improvement is a culture, not a cost-cutting exercise. Technology only helps if the people using it trust it.",
+      "Good data comes first. You can't automate or improve a process you aren't measuring.",
+      "Industry needs software people who understand the operations they're building for.",
+    ],
+    body: [
+      "I attended as an ISE delegate, moving between four stages: Digital Transformation & AI, Automation & Robotics, Lean Productivity & Continuous Improvement, and Precision Engineering & 3D Printing.",
+      "The panel that stayed with me was \"Beyond Cost-Cutting: Building a Culture of Continuous Improvement\". The panellists kept coming back to people: improvement sticks when the team on the floor owns it, and fails when it's imposed from above as a way to cut costs.",
+      "Walking the exhibition, I saw how much of modern manufacturing now runs on software: sensors, data platforms, automation and AI tools. It's a whole area of software engineering I hadn't really considered.",
+    ],
+    surprised: "How much software and data work there is in manufacturing. I'd mostly pictured software careers inside tech companies, but nearly every exhibitor was solving problems with software, data or automation.",
+    challenged: "I went in thinking of AI as the headline. The speakers treated it as one tool among many, and said the hard part is changing how people work. A tool nobody trusts doesn't get used, however clever it is.",
+    next: "Add industrial and manufacturing tech companies to my residency research, and for Ampel, start every client project by understanding the process and the people before automating anything." },
 ];
 
 /* =========================================================
@@ -358,6 +390,12 @@ $$(".post:not(.post-placeholder)").forEach(el => {
   el.addEventListener("keydown", e => e.key === "Enter" && open());
 });
 
+/* Links elsewhere on the page that open a talk write-up: <a data-post="id"> */
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[data-post]");
+  if (a) { e.preventDefault(); openPost(a.dataset.post); }
+});
+
 function openPost(id) {
   const p = POSTS.find(x => x.id === id);
   if (!p) return;
@@ -367,6 +405,7 @@ function openPost(id) {
       <h2>${p.title}</h2>
       <p class="speaker">${p.speaker}</p>
       ${p.body.map(par => `<p>${par}</p>`).join("")}
+      ${(p.photos || []).map(ph => `<figure class="evidence post-photo"><img src="${ph.src}" alt="${ph.alt}" loading="lazy" /><figcaption class="mono">${ph.caption}</figcaption></figure>`).join("")}
       <h4>Key messages</h4>
       <ul class="takeaways">${p.takeaways.map(t => `<li>${t}</li>`).join("")}</ul>
       <h4>Something that surprised me</h4>
