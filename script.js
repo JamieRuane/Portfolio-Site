@@ -128,6 +128,28 @@ const POSTS = [
     surprised: "How much software and data work there is in manufacturing. I'd mostly pictured software careers inside tech companies, but nearly every exhibitor was solving problems with software, data or automation.",
     challenged: "I went in thinking of AI as the headline. The speakers treated it as one tool among many, and said the hard part is changing how people work. A tool nobody trusts doesn't get used, however clever it is.",
     next: "Add industrial and manufacturing tech companies to my residency research, and for Ampel, start every client project by understanding the process and the people before automating anything." },
+
+  { id: "dawid-mark-yasmin", date: "2026-11-25", kind: "Students",
+    title: "What residency is actually like",
+    speaker: "Dawid, Mark and Yasmin, ISE students",
+    excerpt: "Three students who have been through residency talked honestly about the skills it takes, the interviews, and the mistakes to avoid.",
+    photos: [
+      { src: "evidence/residency-talk-notes.jpg", alt: "Handwritten notes listing required skills, preparing for technical interviews, front-end and back-end roles, the actual work on residency, mistakes not to make, and making the correct decision", caption: "My notes from the talk" },
+    ],
+    takeaways: [
+      "Know the skills each residency needs, and build them before you apply.",
+      "Technical interviews take real preparation, not just coursework.",
+      "Different residencies offer very different roles, from front-end to back-end, so the role matters as much as the company.",
+      "Learn from the mistakes other students made so you don't repeat them.",
+    ],
+    body: [
+      "Dawid, Mark and Yasmin talked us through residency from the student side: what partners look for, how they prepared for interviews, and what their days were actually like once they started.",
+      "The part I valued most was the honesty about the actual work. Hearing what a student really does day to day on residency, rather than what a job description says, made it much easier to picture myself there.",
+      "They also split residencies by role. Some placements are mostly front-end, others mostly back-end, and the same company can offer very different experiences. That matters to me, because I want to work on back-end and cloud systems.",
+    ],
+    surprised: "How much the day-to-day work varies between residencies. I'd assumed most placements would be similar, but the role you're given shapes what you learn far more than the company's name.",
+    challenged: "I had been treating technical interviews as something I'd handle when they came. Their advice made it clear that interview preparation is a skill of its own, and that strong projects alone won't get you through.",
+    next: "Choose residencies by the role, not just the company, aiming for back-end and cloud work. Start weekly technical interview practice now, and avoid the mistakes they warned about by researching every partner properly before ranking them." },
 ];
 
 /* =========================================================
