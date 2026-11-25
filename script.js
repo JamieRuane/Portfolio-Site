@@ -601,7 +601,7 @@ const TERM = {
   read: id => { const p = POSTS.find(x => x.id === id); if (!p) return `no post "${id}". try 'talks'`; term.close(); openPost(id); return ""; },
   open: id => { const p = PROJECTS.find(x => x.id === id); if (!p) return `no project "${id}". try 'projects'`; term.close(); openProject(id); return ""; },
   skills: () => "languages  TypeScript · JavaScript · Python · C · C++ · C#\nfrontend   React · Three.js · Canvas\nbackend    Node.js · Firebase / Firestore\ntesting    Vitest · node:test · Firebase emulators",
-  contact: () => `email:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>\nlinkedin: <span class='acc'>linkedin.com/in/jamie-ruane-98090329a</span>` + (CV_FILE ? `\ncv:     type <span class='acc'>cv</span> to open it` : ""),
+  contact: () => `web:    <span class='acc'>jamieruane.ie</span>\nemail:  <span class='acc'>${EMAIL}</span>\ngithub: <span class='acc'>github.com/JamieRuane</span>\nlinkedin: <span class='acc'>linkedin.com/in/jamie-ruane-98090329a</span>` + (CV_FILE ? `\ncv:     type <span class='acc'>cv</span> to open it` : ""),
   cv: () => { if (!CV_FILE) return "no CV yet"; window.open(CV_FILE, "_blank", "noopener"); return "opening CV…"; },
   theme: () => { $("#theme-toggle").click(); return `theme → ${root.dataset.theme}`; },
   accent: () => { shuffleAccent(); return "accent shuffled"; },
