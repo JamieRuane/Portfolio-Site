@@ -447,7 +447,7 @@ $$("[data-lab]").forEach(b => b.addEventListener("click", () => {
    8. COMMAND PALETTE (Ctrl/Cmd + K)
    ========================================================= */
 const COMMANDS = [
-  ...["home", "about", "learn-more", "learned", "industry", "beyond", "developed", "next", "contact", "lab"].map(s => ({
+  ...["home", "about", "learn-more", "learned", "industry", "beyond", "developed", "next", "declarations", "contact", "lab"].map(s => ({
     label: `Go to ${s}`, hint: "nav", run: () => document.getElementById(s).scrollIntoView() })),
   ...PROJECTS.map(p => ({ label: `Open ${p.title}`, hint: "project", run: () => openProject(p.id) })),
   { label: "Toggle theme", hint: "ui", run: () => $("#theme-toggle").click() },
