@@ -384,8 +384,10 @@ function todo(text) {
 const fmtDate = d => new Date(d + "T12:00:00").toLocaleDateString("en-IE", { day: "numeric", month: "short", year: "numeric" });
 const readMins = p => Math.max(1, Math.round([p.excerpt, ...p.body, ...p.takeaways, p.next].join(" ").split(/\s+/).length / 200));
 
-$("#posts").innerHTML = POSTS.map(p => `
-  <article class="post reveal" data-post="${p.id}" data-cursor="read" tabindex="0">
+// Only the first POSTS_SHOWN talks show until "Read more" is pressed.
+const POSTS_SHOWN = 2;
+$("#posts").innerHTML = POSTS.map((p, i) => `
+  <article class="post reveal${i >= POSTS_SHOWN ? " is-extra" : ""}" data-post="${p.id}" data-cursor="read" tabindex="0">
     <div class="post-meta mono"><span class="post-kind">${p.kind}</span><span>${fmtDate(p.date)}</span><span>${readMins(p)} min read</span></div>
     <h3>${p.title}</h3>
     <p class="speaker">${p.speaker}</p>
@@ -410,6 +412,50 @@ $$(".post:not(.post-placeholder)").forEach(el => {
   const open = () => openPost(el.dataset.post);
   el.addEventListener("click", open);
   el.addEventListener("keydown", e => e.key === "Enter" && open());
+});
+
+/* "Read more (N talks)": reveal the rest of the talks */
+if (POSTS.length > POSTS_SHOWN) {
+  const posts = $("#posts");
+  const btn = document.createElement("button");
+  btn.className = "btn ghost small more-btn";
+  btn.setAttribute("aria-controls", "posts");
+  const label = () => {
+    const open = posts.classList.contains("expanded");
+    btn.setAttribute("aria-expanded", open);
+    btn.innerHTML = open ? `Show fewer <span aria-hidden="true">↑</span>`
+                         : `Read more (${POSTS.length} talks) <span aria-hidden="true">↓</span>`;
+  };
+  btn.addEventListener("click", () => {
+    const opening = !posts.classList.contains("expanded");
+    posts.classList.toggle("expanded", opening);
+    label();
+    if (opening) $(".post.is-extra", posts)?.focus({ preventScroll: true });
+    else posts.closest("section").scrollIntoView({ behavior: "smooth" });
+  });
+  label();
+  posts.after(btn);
+}
+
+/* Compact cards: Beyond the classroom and My values show the photo, title and
+   key line; "Read more" reveals the full reflection (.activity-points). */
+$$("#beyond .activity, #learn-more .value-card").forEach((card, i) => {
+  const more = $(".activity-points", card);
+  if (!more) return;
+  more.id ||= `card-more-${i}`;
+  card.classList.add("collapsible", "is-collapsed");
+  const btn = document.createElement("button");
+  btn.className = "read-more mono";
+  btn.setAttribute("aria-controls", more.id);
+  const label = () => {
+    const collapsed = card.classList.contains("is-collapsed");
+    btn.setAttribute("aria-expanded", !collapsed);
+    btn.innerHTML = collapsed ? `Read more <span aria-hidden="true">↓</span>`
+                              : `Show less <span aria-hidden="true">↑</span>`;
+  };
+  btn.addEventListener("click", () => { card.classList.toggle("is-collapsed"); label(); });
+  label();
+  more.after(btn);
 });
 
 /* Links elsewhere on the page that open a talk write-up: <a data-post="id"> */

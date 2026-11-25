@@ -638,3 +638,20 @@ section[tabindex="-1"]:focus { outline: none; }
 .post-photo img { aspect-ratio: 4 / 3; }
 .activity-lead a { color: var(--accent-text); }
 .post-photo img[src*="notes"] { aspect-ratio: auto; }
+
+/* =========================================================
+   Read more: compact cards and talks
+   ========================================================= */
+@media screen {
+  .collapsible.is-collapsed .activity-points { display: none; }
+  .posts:not(.expanded) .post.is-extra { display: none; }
+}
+#beyond .reflect-grid, .values-grid { align-items: start; }
+.read-more {
+  justify-self: start; width: fit-content; margin-top: 4px; padding: 6px 0;
+  background: none; border: 0; cursor: pointer;
+  color: var(--accent-text); font-size: 13px; letter-spacing: .06em; text-transform: uppercase;
+}
+.read-more:hover { text-decoration: underline; text-underline-offset: 4px; }
+.more-btn { margin-top: 24px; }
+@media print { .read-more, .more-btn { display: none; } }
