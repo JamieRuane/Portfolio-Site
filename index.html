@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <!-- ?v= forces browsers to fetch fresh files. Bump it (both here and on script.js below) whenever you change style.css or script.js. -->
-  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -53,6 +53,7 @@
     <li data-target="beyond">05</li>
     <li data-target="developed">06</li>
     <li data-target="next">07</li>
+    <li data-target="declarations">§</li>
   </ol>
 
   <main id="main">
@@ -352,12 +353,76 @@
       <header class="section-head">
         <span class="mono num">06</span>
         <h2>How I developed this year</h2>
-        <p class="section-note">Projects, what they taught me, and industry engagement.</p>
+        <p class="section-note">Key activities, what they taught me, and what comes next.</p>
       </header>
 
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p><strong>Looking back on the year.</strong> How have you grown technically and professionally? What can you do now that you couldn't at the start? Open a project below to add what each one taught you.</p>
+      <div class="identity reveal">
+        <p>I started this year able to build things alone. Since then I've learned to build them properly and with other people: researching like an academic, working through pull requests on a team, and running software in production, not just on my laptop.</p>
+      </div>
+
+      <h3 class="sub-head">Key development activities</h3>
+      <div class="reflect-grid">
+        <article class="reflect-card activity reveal">
+          <span class="value-num mono">academic skills · required</span>
+          <h4>Library Skills Programme</h4>
+          <dl class="activity-points">
+            <dt>Situation</dt>
+            <dd>UL Library's online programme on finding, evaluating and referencing academic sources.</dd>
+            <dt>Learning</dt>
+            <dd>How to search the library catalogue and databases properly, and judge whether a source is credible rather than just the first search result.</dd>
+            <dt>Application</dt>
+            <dd>I now check official documentation and peer-reviewed sources before blog posts when researching technical decisions, and I reference what I use.</dd>
+            <dt>Next step</dt>
+            <dd>Get faster at finding research papers for technical topics, such as compilers and machine learning.</dd>
+          </dl>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p><strong>Evidence (required):</strong> screenshot of your completion page or certificate. Check the wording above matches what the programme covered.</p></div>
+        </article>
+
+        <article class="reflect-card activity reveal">
+          <span class="value-num mono">academic skills · required</span>
+          <h4>Assignment Toolkit</h4>
+          <dl class="activity-points">
+            <dt>Situation</dt>
+            <dd>UL's step-by-step guide to planning, researching, writing and referencing an assignment.</dd>
+            <dt>Learning</dt>
+            <dd>Breaking a brief into stages with deadlines, and writing to the marking criteria instead of around them.</dd>
+            <dt>Application</dt>
+            <dd>I planned this portfolio that way: mapping each section to the brief's criteria and word counts, then drafting early so there was time to revise.</dd>
+            <dt>Next step</dt>
+            <dd>Write more concisely. My first drafts usually run long.</dd>
+          </dl>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p><strong>Evidence (required):</strong> screenshot of your completion page or certificate. Check the wording above matches what the toolkit covered.</p></div>
+        </article>
+
+        <article class="reflect-card activity reveal">
+          <span class="value-num mono">team-based learning</span>
+          <h4>System Fetch (team project)</h4>
+          <dl class="activity-points">
+            <dt>Situation</dt>
+            <dd>A Java tool, built as a team, that reads Linux system interfaces to report CPU, memory, PCI and USB devices.</dd>
+            <dt>Learning</dt>
+            <dd>A shared codebase needs different skills from solo coding. Small pull requests and honest code review kept us from breaking each other's work.</dd>
+            <dt>Application</dt>
+            <dd>I now use branches and pull requests on my solo projects too. This site was built one reviewed PR at a time.</dd>
+            <dt>Next step</dt>
+            <dd>Take on more of the planning and task-splitting in my next team project.</dd>
+          </dl>
+        </article>
+
+        <article class="reflect-card activity reveal">
+          <span class="value-num mono">technical · self-directed</span>
+          <h4>Running a platform on AWS</h4>
+          <dl class="activity-points">
+            <dt>Situation</dt>
+            <dd>My own serverless web platform: Lambda, API Gateway, S3 and CloudFront, defined in AWS CDK and deployed by GitHub Actions.</dd>
+            <dt>Learning</dt>
+            <dd>Shipping is only half the job. Monitoring and test-gated releases taught me to build software that keeps working.</dd>
+            <dt>Application</dt>
+            <dd>The same CI/CD and testing habits now go into every project, including Ampel's client automations.</dd>
+            <dt>Next step</dt>
+            <dd>Earn an AWS certification to put structure behind what I taught myself (see my plan below).</dd>
+          </dl>
+        </article>
       </div>
 
       <div class="sub-head-row">
@@ -377,12 +442,6 @@
         <p class="section-note">Side projects I build for fun.</p>
       </div>
       <div class="grid compact" id="games-grid"></div>
-
-      <h3 class="sub-head">Industry engagement</h3>
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p>Industry-facing work this year: residency applications, interviews, company visits, open-source contributions, publishing standup-scribe to npm, and what each taught you.</p>
-      </div>
     </section>
 
     <!-- 07 — WHERE AM I GOING NEXT? personal development plan -->
@@ -390,31 +449,130 @@
       <header class="section-head">
         <span class="mono num">07</span>
         <h2>Where am I going next?</h2>
-        <p class="section-note">My personal development plan.</p>
+        <p class="section-note">My development plan for the next 12 months.</p>
       </header>
 
+      <div class="identity reveal">
+        <p>At the start of the module I thought of myself as someone who codes. I now think of myself as an emerging engineer: someone who is judged on how they work with a team, how reliable their software is, and how they treat the people it affects. I want employers to see me as reliable, ambitious and easy to work with. What still needs work is professional experience: I haven't yet worked in an engineering team inside a company, and my LinkedIn and network are only starting out.</p>
+      </div>
+
+      <h3 class="sub-head">Four goals</h3>
       <ol class="pdp">
         <li class="pdp-step reveal">
-          <span class="pdp-when mono">next 6 months</span>
-          <h4>Short-term goal</h4>
-          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>Goal</strong></li><li><strong>Actions</strong> I'll take</li><li><strong>How I'll know</strong> I've achieved it</li></ul></div>
+          <span class="pdp-when mono">target · April 2027</span>
+          <h4>Secure a backend, cloud or DevOps residency</h4>
+          <dl class="activity-points">
+            <dt>Why it matters</dt>
+            <dd>Residency is where I get the team experience my profile is missing, in the area I want to build a career in.</dd>
+            <dt>Actions</dt>
+            <dd>Research every residency partner's tech stack, tailor my CV for each application, and practise technical interviews weekly.</dd>
+          </dl>
         </li>
         <li class="pdp-step reveal">
-          <span class="pdp-when mono">residency</span>
-          <h4>Residency goal</h4>
-          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>The residency I'm aiming for</strong> and why</li><li><strong>Skills to build</strong> before it</li><li><strong>What I want to get out of it</strong></li></ul></div>
+          <span class="pdp-when mono">target · June 2027</span>
+          <h4>Pass the AWS Certified Cloud Practitioner exam</h4>
+          <dl class="activity-points">
+            <dt>Why it matters</dt>
+            <dd>It turns self-taught AWS experience into a recognised, measurable credential employers can trust.</dd>
+            <dt>Actions</dt>
+            <dd>Complete the AWS Skill Builder learning path, take two practice exams scoring 80%+, then book the exam.</dd>
+          </dl>
         </li>
         <li class="pdp-step reveal">
-          <span class="pdp-when mono">3–5 years</span>
-          <h4>Long-term direction</h4>
-          <div class="todo"><span class="todo-tag mono">to fill in</span><ul><li><strong>Where I want to be</strong></li><li><strong>The steps</strong> to get there</li><li><strong>What could change</strong> the plan</li></ul></div>
+          <span class="pdp-when mono">target · September 2027</span>
+          <h4>Deliver Ampel's first paid client project</h4>
+          <dl class="activity-points">
+            <dt>Why it matters</dt>
+            <dd>Building a business is my long-term goal. One real client tests whether I can turn technical skill into value for someone else.</dd>
+            <dt>Actions</dt>
+            <dd>Interview ten local SMEs about their admin pain points, build one automation demo, and deliver a scoped first project.</dd>
+          </dl>
+        </li>
+        <li class="pdp-step reveal">
+          <span class="pdp-when mono">target · November 2027</span>
+          <h4>Build a professional network</h4>
+          <dl class="activity-points">
+            <dt>Why it matters</dt>
+            <dd>Every talk this year showed me that opportunities come through people, and my network is only starting.</dd>
+            <dt>Actions</dt>
+            <dd>Complete my LinkedIn profile, connect with 50 people in the industry, and attend at least two hackathons or meetups.</dd>
+          </dl>
         </li>
       </ol>
 
-      <h3 class="sub-head">Skills I'm developing</h3>
-      <div class="todo reveal">
-        <span class="todo-tag mono">to fill in</span>
-        <p>Technical and professional skills you're working on next, and how: courses, projects, practice, mentors.</p>
+      <h3 class="sub-head">Reading &amp; resources</h3>
+      <p class="section-note values-intro">Eight resources I'm using to support these goals.</p>
+      <ul class="resources">
+        <li class="resource reveal">
+          <span class="resource-kind mono">book</span>
+          <h4><a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/" target="_blank" rel="noopener">The Pragmatic Programmer</a> <span class="resource-by">· David Thomas &amp; Andrew Hunt</span></h4>
+          <p>Practical habits for writing maintainable code and taking ownership of your work. Good preparation for working in a residency team.</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">book</span>
+          <h4><a href="https://dataintensive.net/" target="_blank" rel="noopener">Designing Data-Intensive Applications</a> <span class="resource-by">· Martin Kleppmann</span></h4>
+          <p>How real backend systems store, move and scale data. It's the theory behind the cloud work I want to do.</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">learning platform</span>
+          <h4><a href="https://skillbuilder.aws/" target="_blank" rel="noopener">AWS Skill Builder</a></h4>
+          <p>AWS's official training, and my main study route for the Cloud Practitioner exam (goal 2).</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">book · free online</span>
+          <h4><a href="https://craftinginterpreters.com/" target="_blank" rel="noopener">Crafting Interpreters</a> <span class="resource-by">· Robert Nystrom</span></h4>
+          <p>A hands-on guide to building a programming language. It's my reference for the mini C compiler.</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">book</span>
+          <h4><a href="https://www.momtestbook.com/" target="_blank" rel="noopener">The Mom Test</a> <span class="resource-by">· Rob Fitzpatrick</span></h4>
+          <p>How to talk to customers without getting misleading answers. I'll use it for the SME interviews behind Ampel (goal 3).</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">newsletter</span>
+          <h4><a href="https://newsletter.pragmaticengineer.com/" target="_blank" rel="noopener">The Pragmatic Engineer</a> <span class="resource-by">· Gergely Orosz</span></h4>
+          <p>How tech companies actually hire and run engineering teams. Useful context for residency applications.</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">course · free</span>
+          <h4><a href="https://learn.greensoftware.foundation/" target="_blank" rel="noopener">Green Software Practitioner</a> <span class="resource-by">· Green Software Foundation</span></h4>
+          <p>Practical ways to cut software's energy use. It follows on from Birgit Penzenstadler's talk and my value of being ethical and sustainable.</p>
+        </li>
+        <li class="resource reveal">
+          <span class="resource-kind mono">careers resource</span>
+          <h4><a href="https://gradireland.com/" target="_blank" rel="noopener">gradireland</a></h4>
+          <p>Irish employer profiles, CV advice and interview preparation for students. I'll use it to research residency partners (goal 1).</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- DECLARATIONS — required by the assessment brief -->
+    <section id="declarations" class="declarations">
+      <header class="section-head">
+        <span class="mono num">§</span>
+        <h2>Declarations</h2>
+      </header>
+
+      <div class="reflect-grid">
+        <article class="reflect-card reveal">
+          <span class="value-num mono">required</span>
+          <h4>Declaration of Generative AI and AI-assisted technologies</h4>
+          <p>I used <strong>Claude (Anthropic), through Claude Code</strong>, while making this portfolio, for two purposes:</p>
+          <ul class="decl-list">
+            <li><strong>Building the website.</strong> Writing and debugging the HTML, CSS and JavaScript from my design directions.</li>
+            <li><strong>Drafting text.</strong> Turning my own notes, CV and photos into first drafts of the reflections, which I then reviewed and edited so they reflect my own experiences and views.</li>
+          </ul>
+          <p>All experiences, opinions and evidence are my own. I have saved my prompts and the responses and will keep them for the full academic year.</p>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>List any other AI tools you used (e.g. for Code Quest or your CV), and update this once you've edited the drafts yourself.</p></div>
+        </article>
+
+        <article class="reflect-card reveal">
+          <span class="value-num mono">required</span>
+          <h4>Plagiarism declaration · ISE 2026</h4>
+          <p>I declare that this material, which I now submit for assessment, is entirely my own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text. I understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should I engage in plagiarism, collusion or copying.</p>
+          <p class="mono decl-sign">Jamie Ruane · ID 26445751</p>
+          <div class="todo"><span class="todo-tag mono">to fill in</span><p>The brief's text was cut off at the end. Check the last sentence against the official form on Brightspace.</p></div>
+        </article>
       </div>
     </section>
 
@@ -456,7 +614,7 @@
 
   <footer class="footer mono">
     <span>© <span id="year"></span> Jamie Ruane</span>
-    <span>built from scratch · no frameworks</span>
+    <span><a href="#declarations">AI &amp; plagiarism declarations</a> · built from scratch · no frameworks</span>
   </footer>
 
   <!-- Phone / small-screen menu -->
@@ -471,6 +629,7 @@
         <li><a href="#beyond"><span class="mono">05</span>Beyond the classroom</a></li>
         <li><a href="#developed"><span class="mono">06</span>How I developed this year</a></li>
         <li><a href="#next"><span class="mono">07</span>Where am I going next?</a></li>
+        <li><a href="#declarations"><span class="mono">§</span>Declarations</a></li>
         <li><a href="#contact"><span class="mono">@</span>Contact</a></li>
       </ol>
     </nav>
@@ -501,6 +660,6 @@
 
   <div class="toast mono" id="toast" role="status"></div>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>
